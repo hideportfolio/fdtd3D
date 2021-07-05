@@ -1,0 +1,43 @@
+clc
+reflection = MATERIAL(0, 0, 1);
+% air = MATERIAL(340, 0, 1293);
+water = MATERIAL(1500, 0, 1000);
+
+bone = MATERIAL(4000, 1800, 2000);
+vessel = MATERIAL(1601, 481, 1072);
+blood = MATERIAL(1570, 0, 1025);
+purizum = MATERIAL(6000, 3670, 2500);
+
+material = [water, bone, vessel, blood, reflection];
+
+res.dx = 0.00002857/2;
+res.dy = 0.00002857/2;
+
+res.dt = res.dx / water.velocity / sqrt(2);
+
+model = SimulationSpace(res);
+[space.nx, space.ny] = size(model);
+space.nt = 2000;
+
+f = 2.0e+6;
+senLen = round(5e-3 / res.dx);
+inputwave = IncidenceWave(f, res, space, water, senLen);
+
+simu = FDTD(res, space, material, model);
+
+for s = 1:space.nt
+
+    tic
+%         waitbar(s / space.nt);
+%         pause(0.1);
+    simu = simu.SendWave(inputwave, senLen, s);
+    simu = simu.ElasticFDTD();
+    simu.Image();
+    simu.ObservedWave();
+
+    clc
+    T = toc;
+    time = T * (space.nt-s) / 3600 
+    s
+
+end
