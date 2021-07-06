@@ -143,8 +143,8 @@ classdef FDTD
         function waveform = ObservedWave(obj)
             center = round(obj.space.ny / 2);
             sen = 3e-3 / obj.res.dx;
-            posix = round(41e-3 / obj.res.dx) - 1;
-            waveform = sum(obj.Txx(posix, center - round(sen / 2):center + round(sen / 2)))
+            posix = round(2e-3 / obj.res.dx) - 1;
+            waveform = sum(obj.Txx(posix, center - round(sen / 2):center + round(sen / 2)));
 
             % focalx = inputpointx + round(60e-3 / dx);
             % focaly = 2637;

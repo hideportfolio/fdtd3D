@@ -20,7 +20,7 @@ res.dt = res.dx / purizum.velocity / sqrt(2);
 
 model = SimulationSpace(res);
 [space.nx, space.ny] = size(model);
-space.nt = 2000;
+space.nt = 20000;
 
 f = 2.0e+6;
 senLen = round(25e-3 / res.dx);
@@ -32,8 +32,8 @@ waveform = zeros(space.nt, 1);
 for s = 1:space.nt
 
     tic
-    %         waitbar(s / space.nt);
-    %         pause(0.1);
+    waitbar(s / space.nt);
+    pause(0.1);
     simu = simu.SendWave(inputwave, senLen, s);
     simu = simu.ElasticFDTD();
     simu.Image();
