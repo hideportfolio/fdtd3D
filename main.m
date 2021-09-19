@@ -12,7 +12,7 @@ vessel = MATERIAL(160, 481, 1072);
 blood = MATERIAL(1570, 0, 1025);
 purizum = MATERIAL(6000, 3670, 2500);
 
-material = [water, purizum];
+material = [water, bone];
 
 % res.dx = 0.00002857/2;
 % res.dy = 0.00002857/2;
@@ -27,7 +27,7 @@ res.dt = res.dx / purizum.velocity / sqrt(dim);
 % dt=dx/velocity_longitudinal_bone3/sqrt(dimension);
 
 model = SimulationSpace(res);
-[space.nx, space.ny] = size(model);
+[space.nx, space.ny, space.nz] = size(model);
 space.nt = 4000;
 
 f = 2.0e+6;

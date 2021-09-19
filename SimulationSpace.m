@@ -1,20 +1,22 @@
 function model = SimulationSpace(res)
 
-%     x = round(57e-3 / res.dx);
+    %     x = round(57e-3 / res.dx);
     x = round(20e-3 / res.dx);
     y = round(27e-3 / res.dx);
-    model = ones(x, y);
-    [nx, ny] = size(model);
+    z = round(27e-3 / res.dx);
 
-    puri_len = round(14.1e-3 / res.dx);
-    purizum = ones(puri_len, puri_len);
-    purizum(round(puri_len / 2), round(puri_len / 2)) = 2;
-    for l = 1:round(14.1e-3 * sqrt(3) / 2 / res.dx)
-        purizum(l, round(141/244 * l):round(puri_len - 141/244 * l + 1)) = 2;
-    end
+    model = ones(x, y, z);
+    %     [nx, ny] = size(model);
 
-%     model(round(41e-3 / res.dx):round(41e-3 / res.dx) + puri_len - 1, round(ny / 2 - puri_len / 2):round(ny / 2 + puri_len / 2) - 1) = purizum;
-    model(round(2e-3 / res.dx):round(2e-3 / res.dx) + puri_len - 1, round(ny / 2 - puri_len / 2):round(ny / 2 + puri_len / 2) - 1) = purizum;
+    %     puri_len = round(14.1e-3 / res.dx);
+    %     purizum = ones(puri_len, puri_len);
+    %     purizum(round(puri_len / 2), round(puri_len / 2)) = 2;
+    %     for l = 1:round(14.1e-3 * sqrt(3) / 2 / res.dx)
+    %         purizum(l, round(141/244 * l):round(puri_len - 141/244 * l + 1)) = 2;
+    %     end
+
+    % %     model(round(41e-3 / res.dx):round(41e-3 / res.dx) + puri_len - 1, round(ny / 2 - puri_len / 2):round(ny / 2 + puri_len / 2) - 1) = purizum;
+    %     model(round(2e-3 / res.dx):round(2e-3 / res.dx) + puri_len - 1, round(ny / 2 - puri_len / 2):round(ny / 2 + puri_len / 2) - 1) = purizum;
 
 end
 
