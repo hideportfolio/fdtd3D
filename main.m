@@ -12,6 +12,7 @@ vessel = MATERIAL(160, 481, 1072);
 blood = MATERIAL(1570, 0, 1025);
 purizum = MATERIAL(6000, 3670, 2500);
 
+
 material = [water, bone];
 
 % res.dx = 0.00002857/2;
